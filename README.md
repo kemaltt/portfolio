@@ -1,39 +1,121 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio Website
 
-## Getting Started
+A modern, responsive portfolio website built with Next.js, TypeScript, and Tailwind CSS. Features multi-language support, dark/light theme toggle, and smooth animations.
 
-First, run the development server:
+## 🌟 Live Demo
 
+**🔗 [View Live Site](https://portfolio-omega-bay-71.vercel.app/de)**
+
+Available in multiple languages:
+- 🇹🇷 [Turkish](https://portfolio-omega-bay-71.vercel.app/tr)
+- 🇺🇸 [English](https://portfolio-omega-bay-71.vercel.app/en) 
+- 🇩🇪 [German](https://portfolio-omega-bay-71.vercel.app/de)
+
+## ✨ Features
+
+- 📱 **Fully Responsive Design** - Works on all devices
+- 🌍 **Multi-language Support** - Turkish, English, German
+- 🌙 **Dark/Light Theme** - Toggle between themes
+- ⚡ **Smooth Animations** - Powered by Framer Motion
+- 🎨 **Modern UI/UX** - Clean and professional design
+- 📧 **Contact Form** - Get in touch functionality
+- 🚀 **Fast Performance** - Optimized for speed
+
+## 🛠️ Tech Stack
+
+- **Framework:** Next.js 14
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **Animations:** Framer Motion
+- **Icons:** React Icons
+- **Deployment:** Vercel
+
+## 🚀 Getting Started
+
+1. **Clone the repository:**
+```bash
+git clone https://github.com/kemaltt/portfolio.git
+cd portfolio
+```
+
+2. **Install dependencies:**
+```bash
+npm install
+# or
+yarn install
+```
+
+3. **Run the development server:**
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. **Open your browser:**
+Open [http://localhost:3000](http://localhost:3000) to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/
+│   ├── [locale]/
+│   │   ├── messages/
+│   │   │   ├── tr.json
+│   │   │   ├── en.json
+│   │   │   └── de.json
+│   │   ├── layout.tsx
+│   │   └── page.tsx
+│   ├── components/
+│   │   ├── Navbar.tsx
+│   │   ├── Portfolio.tsx
+│   │   ├── ThemeToggle.tsx
+│   │   └── LocaleToggle.tsx
+│   └── globals.css
+└── public/
+    └── profile.jpg
+```
 
-## Learn More
+## 🌍 Internationalization
 
-To learn more about Next.js, take a look at the following resources:
+The website supports three languages with dynamic content loading:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Turkish (tr)** - Default language
+- **English (en)** - Secondary language  
+- **German (de)** - Additional language
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Language files are located in `src/app/[locale]/messages/` directory.
 
-## Deploy on Vercel
+## 🎨 Customization
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Adding New Languages
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# portfolio
-# portfolio
-# portfolio
+1. Create a new JSON file in `src/app/[locale]/messages/`
+2. Add the language code to the `validLocales` array in `layout.tsx`
+3. Update the `LocaleToggle` component with the new language option
+
+### Modifying Content
+
+Edit the appropriate JSON files in the `messages` directory to update text content for each language.
+
+### Styling
+
+The project uses Tailwind CSS for styling. Customize the design by modifying the utility classes in the components.
+
+## 📧 Contact
+
+- **Email:** kemal@example.com
+- **LinkedIn:** [linkedin.com/in/kemal38](https://www.linkedin.com/in/kemal38)
+- **GitHub:** [github.com/kemaltt](https://github.com/kemaltt)
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 🙏 Acknowledgments
+
+- [Next.js](https://nextjs.org) - The React framework used
+- [Tailwind CSS](https://tailwindcss.com) - For styling
+- [Framer Motion](https://www.framer.com/motion/) - For animations
+- [Vercel](https://vercel.com) - For deployment
