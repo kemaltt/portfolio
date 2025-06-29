@@ -12,7 +12,7 @@ interface NavbarProps {
 
 // Manuel çeviri hook'u
 function useManualTranslations() {
-  const [messages, setMessages] = useState<Record<string, string>>({});
+  const [messages, setMessages] = useState<Record<string, unknown>>({});
   const [locale, setLocale] = useState<string>('tr');
 
   useEffect(() => {
@@ -29,8 +29,19 @@ function useManualTranslations() {
     }
   }, []);
 
-  const t = (key: string) => {
-    return messages[key] || key;
+  const t = (key: string): string => {
+    const keys = key.split('.');
+    let value: unknown = messages;
+    
+    for (const k of keys) {
+      if (value && typeof value === 'object' && value !== null && k in value) {
+        value = (value as Record<string, unknown>)[k];
+      } else {
+        return key; // Anahtar bulunamazsa, anahtarı döndür
+      }
+    }
+    
+    return typeof value === 'string' ? value : key;
   };
 
   return { t, locale };

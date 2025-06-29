@@ -1,5 +1,43 @@
 import { motion } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt, FaEye } from 'react-icons/fa';
+import { useState, useEffect } from 'react';
+
+// Manuel çeviri hook'u
+function useManualTranslations() {
+  const [messages, setMessages] = useState<Record<string, unknown>>({});
+  const [locale, setLocale] = useState<string>('tr');
+
+  useEffect(() => {
+    const container = document.querySelector('[data-messages]');
+    if (container) {
+      const messagesData = container.getAttribute('data-messages');
+      const localeData = container.getAttribute('data-locale');
+      if (messagesData) {
+        setMessages(JSON.parse(messagesData));
+      }
+      if (localeData) {
+        setLocale(localeData);
+      }
+    }
+  }, []);
+
+  const t = (key: string): string => {
+    const keys = key.split('.');
+    let value: unknown = messages;
+    
+    for (const k of keys) {
+      if (value && typeof value === 'object' && value !== null && k in value) {
+        value = (value as Record<string, unknown>)[k];
+      } else {
+        return key; // Anahtar bulunamazsa, anahtarı döndür
+      }
+    }
+    
+    return typeof value === 'string' ? value : key;
+  };
+
+  return { t, locale };
+}
 
 interface Project {
   title: string;
@@ -10,76 +48,84 @@ interface Project {
   github: string;
   category: string;
   featured: boolean;
+  key: string; // çeviri anahtarı için
 }
 
 interface PortfolioProps {
   isDark: boolean;
 }
 
-const projects: Project[] = [
-  {
-    title: "E-Ticaret Platformu",
-    description: "Modern bir e-ticaret platformu. React, Node.js ve MongoDB kullanılarak geliştirildi. Kullanıcı dostu arayüz, güvenli ödeme sistemi ve admin paneli içerir.",
-    image: "/projects/ecommerce.jpg",
-    technologies: ["React", "Node.js", "MongoDB", "Express", "Stripe"],
-    link: "https://github.com",
-    github: "https://github.com",
-    category: "Full Stack",
-    featured: true
-  },
-  {
-    title: "Task Yönetim Uygulaması",
-    description: "Kullanıcı dostu bir task yönetim uygulaması. Next.js ve Firebase ile geliştirildi. Gerçek zamanlı güncellemeler ve takım işbirliği özellikleri.",
-    image: "/projects/task-manager.jpg",
-    technologies: ["Next.js", "Firebase", "Tailwind CSS", "TypeScript"],
-    link: "https://github.com",
-    github: "https://github.com",
-    category: "Frontend",
-    featured: true
-  },
-  {
-    title: "Blog Platformu",
-    description: "SEO dostu bir blog platformu. Next.js ve Prisma kullanılarak geliştirildi. Markdown desteği, kategori sistemi ve yorum özelliği.",
-    image: "/projects/blog.jpg",
-    technologies: ["Next.js", "Prisma", "PostgreSQL", "Markdown"],
-    link: "https://github.com",
-    github: "https://github.com",
-    category: "Full Stack",
-    featured: false
-  },
-  {
-    title: "Portfolio Sitesi",
-    description: "Modern ve responsive portfolio sitesi. Framer Motion animasyonları ve dark/light tema desteği ile geliştirildi.",
-    image: "/projects/portfolio.jpg",
-    technologies: ["Next.js", "Framer Motion", "Tailwind CSS", "TypeScript"],
-    link: "https://github.com",
-    github: "https://github.com",
-    category: "Frontend",
-    featured: false
-  },
-  {
-    title: "API Gateway",
-    description: "Mikroservis mimarisi için API Gateway. Rate limiting, authentication ve load balancing özellikleri ile geliştirildi.",
-    image: "/projects/api-gateway.jpg",
-    technologies: ["Node.js", "Redis", "Docker", "JWT"],
-    link: "https://github.com",
-    github: "https://github.com",
-    category: "Backend",
-    featured: false
-  },
-  {
-    title: "Dashboard Analytics",
-    description: "Gerçek zamanlı veri analizi dashboard'u. Chart.js ve WebSocket kullanılarak geliştirildi.",
-    image: "/projects/dashboard.jpg",
-    technologies: ["React", "Chart.js", "WebSocket", "Node.js"],
-    link: "https://github.com",
-    github: "https://github.com",
-    category: "Frontend",
-    featured: false
-  }
-];
-
 export default function Portfolio({ isDark }: PortfolioProps) {
+  const { t } = useManualTranslations();
+
+  const projects: Project[] = [
+    {
+      title: t('portfolio.projects.ecommerce.title'),
+      description: t('portfolio.projects.ecommerce.description'),
+      image: "/projects/ecommerce.jpg",
+      technologies: ["React", "Node.js", "MongoDB", "Express", "Stripe"],
+      link: "https://github.com",
+      github: "https://github.com",
+      category: "Full Stack",
+      featured: true,
+      key: "ecommerce"
+    },
+    {
+      title: t('portfolio.projects.taskManager.title'),
+      description: t('portfolio.projects.taskManager.description'),
+      image: "/projects/task-manager.jpg",
+      technologies: ["Next.js", "Firebase", "Tailwind CSS", "TypeScript"],
+      link: "https://github.com",
+      github: "https://github.com",
+      category: "Frontend",
+      featured: true,
+      key: "taskManager"
+    },
+    {
+      title: t('portfolio.projects.blog.title'),
+      description: t('portfolio.projects.blog.description'),
+      image: "/projects/blog.jpg",
+      technologies: ["Next.js", "Prisma", "PostgreSQL", "Markdown"],
+      link: "https://github.com",
+      github: "https://github.com",
+      category: "Full Stack",
+      featured: false,
+      key: "blog"
+    },
+    {
+      title: t('portfolio.projects.portfolio.title'),
+      description: t('portfolio.projects.portfolio.description'),
+      image: "/projects/portfolio.jpg",
+      technologies: ["Next.js", "Framer Motion", "Tailwind CSS", "TypeScript"],
+      link: "https://github.com",
+      github: "https://github.com",
+      category: "Frontend",
+      featured: false,
+      key: "portfolio"
+    },
+    {
+      title: t('portfolio.projects.apiGateway.title'),
+      description: t('portfolio.projects.apiGateway.description'),
+      image: "/projects/api-gateway.jpg",
+      technologies: ["Node.js", "Redis", "Docker", "JWT"],
+      link: "https://github.com",
+      github: "https://github.com",
+      category: "Backend",
+      featured: false,
+      key: "apiGateway"
+    },
+    {
+      title: t('portfolio.projects.dashboard.title'),
+      description: t('portfolio.projects.dashboard.description'),
+      image: "/projects/dashboard.jpg",
+      technologies: ["React", "Chart.js", "WebSocket", "Node.js"],
+      link: "https://github.com",
+      github: "https://github.com",
+      category: "Frontend",
+      featured: false,
+      key: "dashboard"
+    }
+  ];
   return (
     <section id="portfolio" className={`py-20 relative ${
       isDark ? 'bg-gray-900/50' : 'bg-slate-50/50'
@@ -100,7 +146,7 @@ export default function Portfolio({ isDark }: PortfolioProps) {
                 isDark ? 'text-white' : 'text-gray-800'
               }`}
             >
-              Projelerim
+              {t('portfolio.title')}
             </motion.h2>
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
@@ -118,7 +164,7 @@ export default function Portfolio({ isDark }: PortfolioProps) {
                 isDark ? 'text-gray-300' : 'text-gray-600'
               }`}
             >
-              Geliştirdiğim bazı projeler
+              {t('portfolio.subtitle')}
             </motion.p>
           </div>
 
@@ -132,7 +178,7 @@ export default function Portfolio({ isDark }: PortfolioProps) {
                 isDark ? 'text-white' : 'text-gray-800'
               }`}
             >
-              Öne Çıkan Projeler
+              {t('portfolio.featured')}
             </motion.h3>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {projects.filter(p => p.featured).map((project, index) => (
@@ -222,7 +268,7 @@ export default function Portfolio({ isDark }: PortfolioProps) {
                         className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-lg font-semibold text-center transition-all duration-300 shadow-lg hover:shadow-xl"
                       >
                         <FaEye className="inline mr-2" />
-                        Projeyi İncele
+                        {t('portfolio.viewProject')}
                       </motion.a>
                       <motion.a
                         whileHover={{ scale: 1.05 }}
@@ -237,7 +283,7 @@ export default function Portfolio({ isDark }: PortfolioProps) {
                         }`}
                       >
                         <FaGithub className="inline mr-2" />
-                        Kod
+                        {t('portfolio.viewCode')}
                       </motion.a>
                     </div>
                   </div>
@@ -256,7 +302,7 @@ export default function Portfolio({ isDark }: PortfolioProps) {
                 isDark ? 'text-white' : 'text-gray-800'
               }`}
             >
-              Tüm Projeler
+              {t('portfolio.allProjects')}
             </motion.h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {projects.map((project, index) => (
@@ -354,7 +400,7 @@ export default function Portfolio({ isDark }: PortfolioProps) {
                         rel="noopener noreferrer"
                         className="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold text-center text-sm transition-colors shadow-md hover:shadow-lg"
                       >
-                        İncele
+                        {t('portfolio.viewProject')}
                       </motion.a>
                       <motion.a
                         whileHover={{ scale: 1.05 }}
@@ -369,7 +415,7 @@ export default function Portfolio({ isDark }: PortfolioProps) {
                         }`}
                       >
                         <FaGithub className="inline mr-1" />
-                        Kod
+                        {t('portfolio.viewCode')}
                       </motion.a>
                     </div>
                   </div>

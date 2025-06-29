@@ -1,40 +1,15 @@
 import { ReactNode } from "react";
 
-// Manuel çeviri sistemi
+// Dil dosyalarını import et
+import trMessages from './messages/tr.json';
+import enMessages from './messages/en.json';
+import deMessages from './messages/de.json';
+
+// Mesaj nesnelerini birleştir
 const messages = {
-  tr: {
-    'hero.title': 'Merhaba, Ben Kemal',
-    'hero.subtitle': 'Modern web teknolojileri ile kullanıcı deneyimini ön planda tutan',
-    'hero.role': 'Full Stack Developer',
-    'hero.contactButton': 'İletişime Geç',
-    'hero.portfolioButton': 'Portfolyo',
-    'nav.about': 'Hakkımda',
-    'nav.skills': 'Yetenekler',
-    'nav.portfolio': 'Portfolyo',
-    'nav.contact': 'İletişim'
-  },
-  en: {
-    'hero.title': 'Hello, I\'m Kemal',
-    'hero.subtitle': 'Full Stack Developer who prioritizes user experience with modern web technologies',
-    'hero.role': 'Full Stack Developer',
-    'hero.contactButton': 'Get in Touch',
-    'hero.portfolioButton': 'Portfolio',
-    'nav.about': 'About',
-    'nav.skills': 'Skills',
-    'nav.portfolio': 'Portfolio',
-    'nav.contact': 'Contact'
-  },
-  de: {
-    'hero.title': 'Hallo, ich bin Kemal',
-    'hero.subtitle': 'Full Stack Developer, der moderne Webtechnologien mit Fokus auf Benutzererfahrung einsetzt',
-    'hero.role': 'Full Stack Developer',
-    'hero.contactButton': 'Kontakt aufnehmen',
-    'hero.portfolioButton': 'Portfolio',
-    'nav.about': 'Über mich',
-    'nav.skills': 'Fähigkeiten',
-    'nav.portfolio': 'Portfolio',
-    'nav.contact': 'Kontakt'
-  }
+  tr: trMessages,
+  en: enMessages,
+  de: deMessages
 };
 
 export default async function LocaleLayout({

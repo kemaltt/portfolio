@@ -10,7 +10,7 @@ import Image from 'next/image';
 
 // Manuel çeviri hook'u
 function useManualTranslations() {
-  const [messages, setMessages] = useState<Record<string, string>>({});
+  const [messages, setMessages] = useState<Record<string, unknown>>({});
   const [locale, setLocale] = useState<string>('tr');
 
   useEffect(() => {
@@ -27,8 +27,19 @@ function useManualTranslations() {
     }
   }, []);
 
-  const t = (key: string) => {
-    return messages[key] || key;
+  const t = (key: string): string => {
+    const keys = key.split('.');
+    let value: unknown = messages;
+    
+    for (const k of keys) {
+      if (value && typeof value === 'object' && value !== null && k in value) {
+        value = (value as Record<string, unknown>)[k];
+      } else {
+        return key; // Anahtar bulunamazsa, anahtarı döndür
+      }
+    }
+    
+    return typeof value === 'string' ? value : key;
   };
 
   return { t, locale };
@@ -302,9 +313,9 @@ export default function Home() {
                   />
                   <div className="flex flex-wrap gap-4 pt-6">
                     {[
-                      { label: "3+ Yıl Deneyim", value: "3+" },
-                      { label: "50+ Proje", value: "50+" },
-                      { label: "100% Memnuniyet", value: "100%" }
+                      { label: t('about.stats.experience'), value: "3+" },
+                      { label: t('about.stats.projects'), value: "50+" },
+                      { label: t('about.stats.satisfaction'), value: "100%" }
                     ].map((stat, index) => (
                       <motion.div
                         key={stat.label}
@@ -335,16 +346,12 @@ export default function Home() {
                   <p className={`text-lg leading-relaxed ${
                     isDark ? 'text-gray-300' : 'text-gray-600'
                   }`}>
-                    Merhaba! Ben Kemal, tutkulu bir Full Stack Developer&apos;ım. Modern web teknolojileri
-                    konusunda uzmanlaşmış olup, kullanıcı deneyimini ön planda tutan yenilikçi
-                    çözümler geliştiriyorum.
+                    {t('about.description1')}
                   </p>
                   <p className={`text-lg leading-relaxed ${
                     isDark ? 'text-gray-300' : 'text-gray-600'
                   }`}>
-                    React, Next.js, Node.js ve TypeScript gibi modern teknolojilerle çalışmayı
-                    seviyorum. Her projede performans, güvenlik ve kullanılabilirlik konularına
-                    özel önem veriyorum.
+                    {t('about.description2')}
                   </p>
                   
                   <div className={`p-8 rounded-2xl ${
@@ -352,7 +359,7 @@ export default function Home() {
                   } backdrop-blur-sm shadow-xl`}>
                     <h3 className={`text-2xl font-bold mb-6 ${
                       isDark ? 'text-white' : 'text-gray-800'
-                    }`}>Uzmanlık Alanlarım</h3>
+                    }`}>{t('about.expertise')}</h3>
                     <div className="space-y-4">
                       {[
                         { skill: "Frontend Development", level: 90 },
@@ -421,24 +428,24 @@ export default function Home() {
                     isDark ? 'text-gray-300' : 'text-gray-600'
                   }`}
                 >
-                  Kullandığım teknolojiler
+                  {t('skills.subtitle')}
                 </motion.p>
               </div>
 
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                 {[
-                  { name: "React", icon: "⚛️", category: "Frontend" },
-                  { name: "Next.js", icon: "▲", category: "Framework" },
-                  { name: "TypeScript", icon: "📘", category: "Language" },
-                  { name: "Node.js", icon: "🟢", category: "Backend" },
-                  { name: "Python", icon: "🐍", category: "Language" },
-                  { name: "MongoDB", icon: "🍃", category: "Database" },
-                  { name: "PostgreSQL", icon: "🐘", category: "Database" },
-                  { name: "Docker", icon: "🐳", category: "DevOps" },
-                  { name: "AWS", icon: "☁️", category: "Cloud" },
-                  { name: "Figma", icon: "🎨", category: "Design" },
-                  { name: "Git", icon: "📝", category: "Version Control" },
-                  { name: "Tailwind CSS", icon: "🎨", category: "Styling" }
+                  { name: "React", icon: "⚛️", category: t('categories.frontend') },
+                  { name: "Next.js", icon: "▲", category: t('categories.framework') },
+                  { name: "TypeScript", icon: "📘", category: t('categories.language') },
+                  { name: "Node.js", icon: "🟢", category: t('categories.backend') },
+                  { name: "Python", icon: "🐍", category: t('categories.language') },
+                  { name: "MongoDB", icon: "🍃", category: t('categories.database') },
+                  { name: "PostgreSQL", icon: "🐘", category: t('categories.database') },
+                  { name: "Docker", icon: "🐳", category: t('categories.devops') },
+                  { name: "AWS", icon: "☁️", category: t('categories.cloud') },
+                  { name: "Figma", icon: "🎨", category: t('categories.design') },
+                  { name: "Git", icon: "📝", category: t('categories.versionControl') },
+                  { name: "Tailwind CSS", icon: "🎨", category: t('categories.styling') }
                 ].map((skill, index) => (
                   <motion.div
                     key={skill.name}
@@ -511,7 +518,7 @@ export default function Home() {
                     isDark ? 'text-gray-300' : 'text-gray-600'
                   }`}
                 >
-                  Projeleriniz için benimle iletişime geçin
+                  {t('contact.subtitle')}
                 </motion.p>
               </div>
 
@@ -526,7 +533,7 @@ export default function Home() {
                   <div>
                     <h3 className={`text-2xl font-bold mb-6 ${
                       isDark ? 'text-white' : 'text-gray-800'
-                    }`}>İletişim Bilgileri</h3>
+                    }`}>{t('contact.contactInfo')}</h3>
                     <div className="space-y-4">
                       {[
                         { icon: FaEnvelope, label: "E-posta", value: "kemal@example.com" },
@@ -566,7 +573,7 @@ export default function Home() {
                   <div>
                     <h3 className={`text-2xl font-bold mb-6 ${
                       isDark ? 'text-white' : 'text-gray-800'
-                    }`}>Sosyal Medya</h3>
+                    }`}>{t('contact.socialMedia')}</h3>
                     <div className="flex gap-4">
                       {[
                         { icon: FaGithub, href: "https://github.com", label: "GitHub" },
@@ -605,17 +612,17 @@ export default function Home() {
                 >
                   <h3 className={`text-2xl font-bold mb-6 ${
                     isDark ? 'text-white' : 'text-gray-800'
-                  }`}>Mesaj Gönder</h3>
+                  }`}>{t('contact.sendMessage')}</h3>
                   <form className="space-y-6">
                     <div>
                       <label className={`block text-sm font-medium mb-2 ${
                         isDark ? 'text-gray-300' : 'text-gray-700'
                       }`}>
-                        Ad Soyad
+                        {t('contact.form.name')}
                       </label>
                       <input
                         type="text"
-                        placeholder="Adınız ve soyadınız"
+                        placeholder={t('contact.form.namePlaceholder')}
                         className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all ${
                           isDark 
                             ? 'bg-gray-800 border-gray-600 text-white placeholder-gray-400' 
@@ -627,11 +634,11 @@ export default function Home() {
                       <label className={`block text-sm font-medium mb-2 ${
                         isDark ? 'text-gray-300' : 'text-gray-700'
                       }`}>
-                        E-posta
+                        {t('contact.form.email')}
                       </label>
                       <input
                         type="email"
-                        placeholder="E-posta adresiniz"
+                        placeholder={t('contact.form.emailPlaceholder')}
                         className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all ${
                           isDark 
                             ? 'bg-gray-800 border-gray-600 text-white placeholder-gray-400' 
@@ -643,10 +650,10 @@ export default function Home() {
                       <label className={`block text-sm font-medium mb-2 ${
                         isDark ? 'text-gray-300' : 'text-gray-700'
                       }`}>
-                        Mesaj
+                        {t('contact.form.message')}
                       </label>
                       <textarea
-                        placeholder="Mesajınızı buraya yazın..."
+                        placeholder={t('contact.form.messagePlaceholder')}
                         rows={4}
                         className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all resize-none ${
                           isDark 
@@ -662,7 +669,7 @@ export default function Home() {
                       className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
                     >
                       <FaEnvelope />
-                      Mesaj Gönder
+                      {t('contact.form.sendButton')}
                     </motion.button>
                   </form>
                 </motion.div>

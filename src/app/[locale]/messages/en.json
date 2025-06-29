@@ -27,16 +27,66 @@
     "title": "Skills",
     "subtitle": "Technologies I use"
   },
+  "portfolio": {
+    "title": "My Projects",
+    "subtitle": "Some projects I've developed",
+    "featured": "Featured Projects",
+    "allProjects": "All Projects",
+    "viewProject": "View Project",
+    "viewCode": "View Code",
+    "projects": {
+      "ecommerce": {
+        "title": "E-Commerce Platform",
+        "description": "A modern e-commerce platform built with React, Node.js, and MongoDB. Features user-friendly interface, secure payment system, and admin panel."
+      },
+      "taskManager": {
+        "title": "Task Management App",
+        "description": "A user-friendly task management application built with Next.js and Firebase. Features real-time updates and team collaboration capabilities."
+      },
+      "blog": {
+        "title": "Blog Platform",
+        "description": "An SEO-friendly blog platform built with Next.js and Prisma. Features Markdown support, category system, and commenting functionality."
+      },
+      "portfolio": {
+        "title": "Portfolio Website",
+        "description": "A modern and responsive portfolio website built with Framer Motion animations and dark/light theme support."
+      },
+      "apiGateway": {
+        "title": "API Gateway",
+        "description": "An API Gateway for microservices architecture. Built with rate limiting, authentication, and load balancing features."
+      },
+      "dashboard": {
+        "title": "Dashboard Analytics",
+        "description": "A real-time data analytics dashboard built with Chart.js and WebSocket integration."
+      }
+    }
+  },
   "contact": {
     "title": "Get in Touch",
     "subtitle": "Contact me for your projects",
     "contactInfo": "Contact Information",
     "socialMedia": "Social Media",
+    "sendMessage": "Send Message",
     "form": {
       "name": "Full Name",
       "email": "Email",
       "message": "Message",
-      "sendButton": "Send Message"
+      "sendButton": "Send Message",
+      "namePlaceholder": "Your full name",
+      "emailPlaceholder": "Your email address",
+      "messagePlaceholder": "Write your message here..."
     }
+  },
+  "categories": {
+    "frontend": "Frontend",
+    "framework": "Framework",
+    "language": "Language",
+    "backend": "Backend",
+    "database": "Database",
+    "devops": "DevOps",
+    "cloud": "Cloud",
+    "design": "Design",
+    "versionControl": "Version Control",
+    "styling": "Styling"
   }
 }

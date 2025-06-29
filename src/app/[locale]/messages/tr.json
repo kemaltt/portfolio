@@ -27,16 +27,66 @@
     "title": "Yetenekler",
     "subtitle": "Kullandığım teknolojiler"
   },
+  "portfolio": {
+    "title": "Projelerim",
+    "subtitle": "Geliştirdiğim bazı projeler",
+    "featured": "Öne Çıkan Projeler",
+    "allProjects": "Tüm Projeler",
+    "viewProject": "Projeyi Görüntüle",
+    "viewCode": "Kodu Görüntüle",
+    "projects": {
+      "ecommerce": {
+        "title": "E-Ticaret Platformu",
+        "description": "Modern bir e-ticaret platformu. React, Node.js ve MongoDB kullanılarak geliştirildi. Kullanıcı dostu arayüz, güvenli ödeme sistemi ve admin paneli içerir."
+      },
+      "taskManager": {
+        "title": "Task Yönetim Uygulaması",
+        "description": "Kullanıcı dostu bir task yönetim uygulaması. Next.js ve Firebase ile geliştirildi. Gerçek zamanlı güncellemeler ve takım işbirliği özellikleri."
+      },
+      "blog": {
+        "title": "Blog Platformu",
+        "description": "SEO dostu bir blog platformu. Next.js ve Prisma kullanılarak geliştirildi. Markdown desteği, kategori sistemi ve yorum özelliği."
+      },
+      "portfolio": {
+        "title": "Portfolio Sitesi",
+        "description": "Modern ve responsive portfolio sitesi. Framer Motion animasyonları ve dark/light tema desteği ile geliştirildi."
+      },
+      "apiGateway": {
+        "title": "API Gateway",
+        "description": "Mikroservis mimarisi için API Gateway. Rate limiting, authentication ve load balancing özellikleri ile geliştirildi."
+      },
+      "dashboard": {
+        "title": "Dashboard Analytics",
+        "description": "Gerçek zamanlı veri analizi dashboard'u. Chart.js ve WebSocket kullanılarak geliştirildi."
+      }
+    }
+  },
   "contact": {
     "title": "İletişime Geç",
     "subtitle": "Projeleriniz için benimle iletişime geçin",
     "contactInfo": "İletişim Bilgileri",
     "socialMedia": "Sosyal Medya",
+    "sendMessage": "Mesaj Gönder",
     "form": {
       "name": "Ad Soyad",
       "email": "E-posta",
       "message": "Mesaj",
-      "sendButton": "Mesaj Gönder"
+      "sendButton": "Mesaj Gönder",
+      "namePlaceholder": "Adınız ve soyadınız",
+      "emailPlaceholder": "E-posta adresiniz",
+      "messagePlaceholder": "Mesajınızı buraya yazın..."
     }
+  },
+  "categories": {
+    "frontend": "Frontend",
+    "framework": "Framework",
+    "language": "Dil",
+    "backend": "Backend",
+    "database": "Veritabanı",
+    "devops": "DevOps",
+    "cloud": "Bulut",
+    "design": "Tasarım",
+    "versionControl": "Versiyon Kontrolü",
+    "styling": "Stillendirme"
   }
 }

@@ -27,16 +27,66 @@
     "title": "Fähigkeiten",
     "subtitle": "Technologien, die ich verwende"
   },
+  "portfolio": {
+    "title": "Meine Projekte",
+    "subtitle": "Einige Projekte, die ich entwickelt habe",
+    "featured": "Ausgewählte Projekte",
+    "allProjects": "Alle Projekte",
+    "viewProject": "Projekt ansehen",
+    "viewCode": "Code ansehen",
+    "projects": {
+      "ecommerce": {
+        "title": "E-Commerce-Plattform",
+        "description": "Eine moderne E-Commerce-Plattform, die mit React, Node.js und MongoDB erstellt wurde. Bietet benutzerfreundliche Oberfläche, sicheres Zahlungssystem und Admin-Panel."
+      },
+      "taskManager": {
+        "title": "Task-Management-App",
+        "description": "Eine benutzerfreundliche Task-Management-Anwendung, die mit Next.js und Firebase erstellt wurde. Bietet Echtzeit-Updates und Team-Kollaborationsfunktionen."
+      },
+      "blog": {
+        "title": "Blog-Plattform",
+        "description": "Eine SEO-freundliche Blog-Plattform, die mit Next.js und Prisma erstellt wurde. Bietet Markdown-Unterstützung, Kategoriesystem und Kommentarfunktionalität."
+      },
+      "portfolio": {
+        "title": "Portfolio-Website",
+        "description": "Eine moderne und responsive Portfolio-Website mit Framer Motion-Animationen und Dark/Light-Theme-Unterstützung."
+      },
+      "apiGateway": {
+        "title": "API Gateway",
+        "description": "Ein API Gateway für Microservices-Architektur. Mit Rate Limiting, Authentifizierung und Load Balancing-Funktionen erstellt."
+      },
+      "dashboard": {
+        "title": "Dashboard Analytics",
+        "description": "Ein Echtzeit-Datenanalyse-Dashboard, das mit Chart.js und WebSocket-Integration erstellt wurde."
+      }
+    }
+  },
   "contact": {
     "title": "Kontakt aufnehmen",
     "subtitle": "Kontaktieren Sie mich für Ihre Projekte",
     "contactInfo": "Kontaktinformationen",
     "socialMedia": "Soziale Medien",
+    "sendMessage": "Nachricht senden",
     "form": {
       "name": "Vollständiger Name",
       "email": "E-Mail",
       "message": "Nachricht",
-      "sendButton": "Nachricht senden"
+      "sendButton": "Nachricht senden",
+      "namePlaceholder": "Ihr vollständiger Name",
+      "emailPlaceholder": "Ihre E-Mail-Adresse",
+      "messagePlaceholder": "Schreiben Sie hier Ihre Nachricht..."
     }
+  },
+  "categories": {
+    "frontend": "Frontend",
+    "framework": "Framework",
+    "language": "Sprache",
+    "backend": "Backend",
+    "database": "Datenbank",
+    "devops": "DevOps",
+    "cloud": "Cloud",
+    "design": "Design",
+    "versionControl": "Versionskontrolle",
+    "styling": "Styling"
   }
 }
