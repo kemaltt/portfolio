@@ -1,50 +1,14 @@
-import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import ThemeToggle, { ThemeType } from './ThemeToggle';
 import LocaleToggle from './LocaleToggle';
+import useManualTranslations from '../hooks/useManualTranslations';
+import { useState, useEffect } from 'react';
 
 interface NavbarProps {
   theme: ThemeType;
   setTheme: (theme: ThemeType) => void;
   isDark: boolean;
-}
-
-// Manuel çeviri hook'u
-function useManualTranslations() {
-  const [messages, setMessages] = useState<Record<string, unknown>>({});
-  const [locale, setLocale] = useState<string>('tr');
-
-  useEffect(() => {
-    const container = document.querySelector('[data-messages]');
-    if (container) {
-      const messagesData = container.getAttribute('data-messages');
-      const localeData = container.getAttribute('data-locale');
-      if (messagesData) {
-        setMessages(JSON.parse(messagesData));
-      }
-      if (localeData) {
-        setLocale(localeData);
-      }
-    }
-  }, []);
-
-  const t = (key: string): string => {
-    const keys = key.split('.');
-    let value: unknown = messages;
-    
-    for (const k of keys) {
-      if (value && typeof value === 'object' && value !== null && k in value) {
-        value = (value as Record<string, unknown>)[k];
-      } else {
-        return key; // Anahtar bulunamazsa, anahtarı döndür
-      }
-    }
-    
-    return typeof value === 'string' ? value : key;
-  };
-
-  return { t, locale };
 }
 
 export default function Navbar({ theme, setTheme, isDark }: NavbarProps) {
@@ -56,7 +20,6 @@ export default function Navbar({ theme, setTheme, isDark }: NavbarProps) {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
