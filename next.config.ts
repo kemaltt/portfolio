@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // next-intl plugin'ini kaldırdık
 };
 
 export default nextConfig;

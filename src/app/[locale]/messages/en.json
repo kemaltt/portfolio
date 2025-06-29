@@ -1,0 +1,42 @@
+{
+  "nav": {
+    "about": "About",
+    "skills": "Skills",
+    "portfolio": "Portfolio", 
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Hello, I'm Kemal",
+    "subtitle": "Full Stack Developer who prioritizes user experience with modern web technologies",
+    "role": "Full Stack Developer",
+    "contactButton": "Get in Touch",
+    "portfolioButton": "Portfolio"
+  },
+  "about": {
+    "title": "About Me",
+    "description1": "Hello! I'm Kemal, a passionate Full Stack Developer. I specialize in modern web technologies and develop innovative solutions that prioritize user experience.",
+    "description2": "I love working with modern technologies like React, Next.js, Node.js, and TypeScript. I pay special attention to performance, security, and usability in every project.",
+    "expertise": "Areas of Expertise",
+    "stats": {
+      "experience": "3+ Years Experience",
+      "projects": "50+ Projects",
+      "satisfaction": "100% Satisfaction"
+    }
+  },
+  "skills": {
+    "title": "Skills",
+    "subtitle": "Technologies I use"
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "subtitle": "Contact me for your projects",
+    "contactInfo": "Contact Information",
+    "socialMedia": "Social Media",
+    "form": {
+      "name": "Full Name",
+      "email": "Email",
+      "message": "Message",
+      "sendButton": "Send Message"
+    }
+  }
+}

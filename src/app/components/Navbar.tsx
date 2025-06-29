@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import ThemeToggle, { ThemeType } from './ThemeToggle';
+import LocaleToggle from './LocaleToggle';
 
 interface NavbarProps {
   theme: ThemeType;
@@ -9,9 +10,36 @@ interface NavbarProps {
   isDark: boolean;
 }
 
+// Manuel çeviri hook'u
+function useManualTranslations() {
+  const [messages, setMessages] = useState<Record<string, string>>({});
+  const [locale, setLocale] = useState<string>('tr');
+
+  useEffect(() => {
+    const container = document.querySelector('[data-messages]');
+    if (container) {
+      const messagesData = container.getAttribute('data-messages');
+      const localeData = container.getAttribute('data-locale');
+      if (messagesData) {
+        setMessages(JSON.parse(messagesData));
+      }
+      if (localeData) {
+        setLocale(localeData);
+      }
+    }
+  }, []);
+
+  const t = (key: string) => {
+    return messages[key] || key;
+  };
+
+  return { t, locale };
+}
+
 export default function Navbar({ theme, setTheme, isDark }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t } = useManualTranslations();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,15 +81,17 @@ export default function Navbar({ theme, setTheme, isDark }: NavbarProps) {
             
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center gap-8">
-              <NavLink href="#about" isDark={isDark}>Hakkımda</NavLink>
-              <NavLink href="#skills" isDark={isDark}>Yetenekler</NavLink>
-              <NavLink href="#portfolio" isDark={isDark}>Portfolyo</NavLink>
-              <NavLink href="#contact" isDark={isDark}>İletişim</NavLink>
+              <NavLink href="#about" isDark={isDark}>{t('nav.about')}</NavLink>
+              <NavLink href="#skills" isDark={isDark}>{t('nav.skills')}</NavLink>
+              <NavLink href="#portfolio" isDark={isDark}>{t('nav.portfolio')}</NavLink>
+              <NavLink href="#contact" isDark={isDark}>{t('nav.contact')}</NavLink>
+              <LocaleToggle isDark={isDark} />
               <ThemeToggle theme={theme} setTheme={setTheme} />
             </div>
 
             {/* Mobile Menu Button */}
             <div className="flex items-center gap-4 md:hidden">
+              <LocaleToggle isDark={isDark} />
               <ThemeToggle theme={theme} setTheme={setTheme} />
               <motion.button
                 onClick={toggleMobileMenu}
@@ -98,16 +128,16 @@ export default function Navbar({ theme, setTheme, isDark }: NavbarProps) {
             <div className="container mx-auto px-4 py-6">
               <div className="flex flex-col gap-4">
                 <MobileNavLink href="#about" isDark={isDark} onClick={toggleMobileMenu}>
-                  Hakkımda
+                  {t('nav.about')}
                 </MobileNavLink>
                 <MobileNavLink href="#skills" isDark={isDark} onClick={toggleMobileMenu}>
-                  Yetenekler
+                  {t('nav.skills')}
                 </MobileNavLink>
                 <MobileNavLink href="#portfolio" isDark={isDark} onClick={toggleMobileMenu}>
-                  Portfolyo
+                  {t('nav.portfolio')}
                 </MobileNavLink>
                 <MobileNavLink href="#contact" isDark={isDark} onClick={toggleMobileMenu}>
-                  İletişim
+                  {t('nav.contact')}
                 </MobileNavLink>
               </div>
             </div>

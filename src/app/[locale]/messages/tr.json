@@ -1,0 +1,42 @@
+{
+  "nav": {
+    "about": "Hakkımda",
+    "skills": "Yetenekler", 
+    "portfolio": "Portfolyo",
+    "contact": "İletişim"
+  },
+  "hero": {
+    "title": "Merhaba, Ben Kemal",
+    "subtitle": "Modern web teknolojileri ile kullanıcı deneyimini ön planda tutan",
+    "role": "Full Stack Developer",
+    "contactButton": "İletişime Geç",
+    "portfolioButton": "Portfolyo"
+  },
+  "about": {
+    "title": "Hakkımda",
+    "description1": "Merhaba! Ben Kemal, tutkulu bir Full Stack Developer'ım. Modern web teknolojileri konusunda uzmanlaşmış olup, kullanıcı deneyimini ön planda tutan yenilikçi çözümler geliştiriyorum.",
+    "description2": "React, Next.js, Node.js ve TypeScript gibi modern teknolojilerle çalışmayı seviyorum. Her projede performans, güvenlik ve kullanılabilirlik konularına özel önem veriyorum.",
+    "expertise": "Uzmanlık Alanlarım",
+    "stats": {
+      "experience": "3+ Yıl Deneyim",
+      "projects": "50+ Proje", 
+      "satisfaction": "100% Memnuniyet"
+    }
+  },
+  "skills": {
+    "title": "Yetenekler",
+    "subtitle": "Kullandığım teknolojiler"
+  },
+  "contact": {
+    "title": "İletişime Geç",
+    "subtitle": "Projeleriniz için benimle iletişime geçin",
+    "contactInfo": "İletişim Bilgileri",
+    "socialMedia": "Sosyal Medya",
+    "form": {
+      "name": "Ad Soyad",
+      "email": "E-posta",
+      "message": "Mesaj",
+      "sendButton": "Mesaj Gönder"
+    }
+  }
+}
