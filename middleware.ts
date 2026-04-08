@@ -10,5 +10,5 @@ export default createMiddleware({
 
 export const config = {
   // Tüm path'leri yakala
-  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)']
+  matcher: ['/((?!api|_next|.*\\..*).*)']
 }; 

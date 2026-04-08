@@ -2,14 +2,15 @@
 
 A modern, responsive portfolio website built with Next.js, TypeScript, and Tailwind CSS. Features multi-language support, dark/light theme toggle, and smooth animations.
 
+
 ## 🌟 Live Demo
 
-**🔗 [View Live Site](https://portfolio-omega-bay-71.vercel.app/de)**
+**🔗 [View Live Site](https://portfolio.kemaldev.com/de)**
 
 Available in multiple languages:
-- 🇹🇷 [Turkish](https://portfolio-omega-bay-71.vercel.app/tr)
-- 🇺🇸 [English](https://portfolio-omega-bay-71.vercel.app/en) 
-- 🇩🇪 [German](https://portfolio-omega-bay-71.vercel.app/de)
+- 🇹🇷 [Turkish](https://portfolio.kemaldev.com/tr)
+- 🇺🇸 [English](https://portfolio.kemaldev.com/en) 
+- 🇩🇪 [German](https://portfolio.kemaldev.com/de)
 
 ## ✨ Features
 
@@ -28,7 +29,6 @@ Available in multiple languages:
 - **Styling:** Tailwind CSS
 - **Animations:** Framer Motion
 - **Icons:** React Icons
-- **Deployment:** Vercel
 
 ## 🚀 Getting Started
 
@@ -118,4 +118,3 @@ This project is open source and available under the [MIT License](LICENSE).
 - [Next.js](https://nextjs.org) - The React framework used
 - [Tailwind CSS](https://tailwindcss.com) - For styling
 - [Framer Motion](https://www.framer.com/motion/) - For animations
-- [Vercel](https://vercel.com) - For deployment
