@@ -50,10 +50,14 @@ jobs:
       - name: Deploy to server
         env:
           SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
         run: |
+          echo "Host: $SSH_HOST"
+          echo "User: $SSH_USER"
           echo "$SSH_KEY" | base64 -d > /tmp/deploy_key
           chmod 600 /tmp/deploy_key
-          ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
+          ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no -o BatchMode=yes "$SSH_USER@$SSH_HOST" "
             cd /var/www/portfolio &&
             git pull origin main &&
             npm ci &&
