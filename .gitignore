@@ -41,4 +41,4 @@ yarn-error.log*
 next-env.d.ts
 
 # large files
-public/profile.jpg
+# public/profile.jpg
